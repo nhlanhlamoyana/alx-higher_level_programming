@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-"""
-Defines a base model class.
-"""
+'''Module for Base class.'''
 
 
 
 class Base:
-    """
-    Reprsents the base mode:
-    """
+    '''A repesentation of the base of our OOP hierarchy.'''
 
     __nb_objects = 0
-    def __init__(self, id=None):
+
+    def __init_(self, id-None):
+        '''Constructor.'''
         if id is not None:
             self.id = id
         else:
