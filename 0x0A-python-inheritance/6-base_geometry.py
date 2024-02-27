@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-"""Defines a base geometry
-class BaseGeometry."""
+"""Defines a base geometry class BaseGeometry."""
 
 
 
 class BaseGeometry:
-    """Represent base
-geometry."""
+    """Represent base geometry."""
 
 
 def area(self):
