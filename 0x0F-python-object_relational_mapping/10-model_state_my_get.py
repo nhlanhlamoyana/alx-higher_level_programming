@@ -1,32 +1,30 @@
 #!/usr/bin/python3
 
 """ Prints the State object with the name passed as argument from the database hbtn_0e_0_usa database """
+import sys
+from sqlalchemy import create_engine 
+from sqlalchemy.orm import sessionmaker
+from model_state import State
 
-if __name__ = "__main__":
+if __name__ == "__main__":
+    # Create the SQLAlchemy engine using the provided MySQL credentials
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}"
+            .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+            pool_pre_ping=True)
+    # Create a session factory
+    Session = sessionmaker(bind=engine)
 
-    from sqlalchemy import create_engine 
-    from sqlachemy.ext.declarative import declarative_base
-    from sqlalchemy.orm import sessionmaker
-    import sys
-    from model_state import Base, State
+    # Create a session object 
+    session = Session()
 
-    inp = sys.argv
-    if len(inp) < 5 or ";" in inp[4]:
-        exit(1)
+    # Search for the specified state in the database
+    found = False
+    for state in session.query(State):
+        if state.name == sys.argv[4]:
+            print("{}".format(state.id))
+            found = True
+            break
 
-        conn_str = "mysql+mysqldb://{}:{}@localhost:3306/{}"
-        engine = create_engine(conn_str.format(inp[1], inp[2], inp[3]))
-        Session = sessionmaker(engine)
-
-        Base.metadata.create_all(engine)
-
-        session = Session()
-
-        my_query = session.query(State).filter(State.name.like(inp[4])).all()
-
-        if len(my_query) == 0:
+        # Print a message if the state is not found
+        if found is False:
             print("Not found")
-        else:
-            print(my_query[0].id)
-
-            43trt5session.close()
