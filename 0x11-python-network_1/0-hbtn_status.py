@@ -1,13 +1,13 @@
 #!/usr/bin/python3
-'''task 0 script'''
+"""Fetches https://alx-intranet.hbtn.io/status."""
+import urlib.request
 
 
 if __name__ == "__main__":
-    import urlib.request
-
-    with urlib.request.urlopen('https://intranet.hbtn.io/status') as res:
-        content = res.read()
+    request = urlib.request.Request("https://alx-intranet.hbtn.io/status")
+    with urlib.request.urlopen(request) as response:
+        body = response.read()
         print("Body response:")
-        print("\t- type: {}".format(type(content)))
-        print("\t- content: {}".format(content))
-        print("\t- utf8 content: {}".format(content.decode('utf-8')))
+        print("\t- type: {}".format(type(body)))
+        print("\t- content: {}".format(body))
+        print("\t- utf8 content: {}".format(body.decode("utf-8")))
