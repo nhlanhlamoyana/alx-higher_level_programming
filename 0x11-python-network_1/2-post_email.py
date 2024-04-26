@@ -6,7 +6,7 @@ Usage: ./2-post_email.py <URL> <email>
 
 if __name__ == '__main__':
     import sys
-    from urlib import request, parse
+    from urllib import request, parse
 
     
     data = parse.urlencode({'email': sys.argv[2]}.encode()
