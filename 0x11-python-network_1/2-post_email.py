@@ -4,17 +4,12 @@ Usage: ./2-post_email.py <URL> <email>
   - Displays the body of the response.
 """
 
+if __name__ == '__main__':
+    import sys
+    from urlib import request, parse
 
-import sys
-import urlib.parse
-import urlib.request
-
-
-if __name__ == "__main__":
-    url = sys.argv[1]
-    value = {"email": sys.argv[2]}
-    data = urlib.parse.urlencode(value).encode("ascii")
-
-    request = urlib.request.Request(url, data)
-    with urlib.request.urlopen(request) as response:
-        print(response.read().decode("utf-8"))
+    
+    data = parse.urlencode({'email': sys.argv[2]}.encode()
+    req = request.Request(sys.argv[1], data=data)
+    with request.urlopen(req) as res:
+        print(response.read().decode('UTF-8'))  
