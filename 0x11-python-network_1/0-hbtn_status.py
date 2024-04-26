@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-'''a Python script that fetches https://alx-intranet.hbtn.io/status'''
+'''task 0 script'''
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import urlib.request
 
     with urlib.request.urlopen('https://intranet.hbtn.io/status') as res:
